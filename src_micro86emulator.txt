@@ -1,2 +1,0 @@
-"C:\\Users\\ahmed\\SkyDrive\\Brooklyn College\\FALL 2014\\Programming languages 3160\\Jcreator\\Micro86Emulator\\Micro86.java"
-"C:\\Users\\ahmed\\SkyDrive\\Brooklyn College\\FALL 2014\\Programming languages 3160\\Jcreator\\Micro86Emulator\\OpCode.java"
