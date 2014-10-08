@@ -7,66 +7,61 @@
  * if this software turns your computer into Transformer or anything else, its not intended to do. 
  */
 
-
  /* Documentation:
+  * 	Runnable=(filename)||(-d filename)||(-t filename)||(-d -t filename)
   *			Emulator Specs:
+  *				Micro86.class + *.class-Debug.class
   *					CPU():				//Has three resgisters
   *						Three Registers:
-  *							acc();		//General Purpose Register or Accumulator
-  *							ip();		//Instruction Pointer Register
-  *							flags();	//Machine Status Register
+  *							acc;		//General Purpose Register or Accumulator
+  *							ip;		//Instruction Pointer Register
+  *							flags;	//Machine Status Register
+  *							ir;		//Instruction register
   *
-  *					Memory();			//32bit*1000 word size memory.
-  *
-  *
-  *
-  *
-  *
-  *
-  *
+  *					Memory[];			//32bit*[size] word size memory.
+  *			Debugging options;
+  *					Debug.class
+  *						trace (args=-t)
+  *						decode (args=-d)
+  *						MemoryDump(auto)
   */
-
-
-
 
 package areaz.Micro86.emulator;
 import java.io.*;
 import java.util.Scanner;
 
-public class Micro86{
-	
-	public static int[] Memory=new int[50];			//initial memory is 20
+public class Micro86{	
+	public static int[] Memory=new int[30];			//initial memory is 30
 	public static OpCode[] op=new OpCode[0xFFFF];	//OpCode jump table
 	public static Scanner input=new Scanner(System.in);	//to read input
-	public static int acc=0x00000000;
-	public static int ins=0x00000000;
-	public static int flag=0x0;
+	public static int acc=0x0;							//Accumulator
+	public static int ins=0x0;							//Instruction Pointer holder
+	public static int flag=0x0;							//Flag Register
+	public static int ir=0x0;							//Instructions holder
+	public static int counter=-1;						//Instruction counter for debugging
+	public static String termination="DEATH";	//By default, the termination is DEATH				
+	public static boolean trace, decode;				//Debugging properties
+	
 	public static void main(String[] args){
-		Loader("C:\\Users\\ahmed\\SkyDrive\\Eclipse\\Micro86\\assets\\11_int_io.m86");
-		initializeOpCode();		//initializing oppcodes
-		boolean run=true;
-		int fetch, oc, instruction;
-		while(run){
-			fetch=Memory[ins];
-			oc=fetch>>>16;
-			instruction=fetch&0x0000FFFF;
-			Debug.translate(oc, instruction);
-			op[oc].Execute(instruction);
-			ins+=0x00000001;
-			Debug.print(Integer.toHexString(acc)+"\t"+Integer.toHexString(flag));
-		}
-		
-		
-		
-		
-		int x=0x01000000;
-		int y=x>>>16;
-		int z=x&0x000FFFF;
-		Debug.print(z+"");
-		op[y].Execute(x);	
+			new Micro86(args);
 	}
 	
-	public static void initializeOpCode(){
+	public Micro86(String[] args){
+		Loader(args);			//Loads program into Memory
+		initializeOpCode();		//initializing opcodes
+		while(true){
+			counter++;
+			ir=Memory[ins];	//Fetching instructions		
+			if(trace)
+				Debug.Trace();	//DEBUG
+			op[ir>>>16].Execute(ir&0x0000FFFF);	//Execute
+			ins+=0x00000001;					//Increment instruction register
+		}
+	}
+	
+	private static void initializeOpCode(){
+		//Why array? That is a way of implementing jump table
+		//Switch, at worse could be interepted as if-else-if, increasing the number of comparisons
 		op[0x0100]=new Halt();
 		op[0x0202]=new Load();
 		op[0x0201]=new LoadI();
@@ -95,9 +90,23 @@ public class Micro86{
 		
 	}
 	
-	public static void Loader(String filename){
+	public static void Loader(String[] args){
+		String filename="";
+		for(int i=0; i<args.length; i++){
+			if(i+1==args.length){
+				filename=args[i];
+			}
+			else if(args[i].equalsIgnoreCase("-t"))
+				trace=true;
+			else if(args[i].equalsIgnoreCase("-d"))
+				decode=true;
+		}
+		
 		String temp;
 		int i=0;
+		Debug.print("================================\n"+
+					"Micro86 Emulator version 1.0\n================================\n"+
+						"Executable file: "+ filename+"\n");
 		try (BufferedReader br = new BufferedReader(new FileReader(filename)))
 		{
 			while ((temp = br.readLine()) != null) {
@@ -108,11 +117,15 @@ public class Micro86{
 				}
 		} catch (Exception e) {
 			System.out.println(e.getMessage()+"\n"+e.toString());
-		} 	
+		}
+		if(decode){
+			Debug.DeCode();
+		}
+		
 	}
 }
 
-///////////The Following classes and interfaces Implements the OpCode Functiona
+///////////The Following classes and interfaces Implements the OpCode Functions
 interface OpCode{
 	public void Execute(int m);	//interface to implement "jump-table"
 }
@@ -120,7 +133,7 @@ interface OpCode{
 class Halt implements OpCode{
 	//OpCode Halt stops the machine
 	public void Execute(int m){
-		Debug.print("Halt");
+		Micro86.termination="Normal";
 		Debug.Dump();
 		System.exit(0);
 	}
@@ -266,7 +279,6 @@ class CmpI implements OpCode{
 	}
 }
 
-
 class JmpI implements OpCode{
 	//OpCode JmpI jumps to m OpCode instructions
 	public void Execute(int m){
@@ -341,11 +353,36 @@ class Out implements OpCode{
 
 //Debugger
 class Debug{
+	static boolean activatetrace;
+	
 	static void print(String s){
 		System.out.println(s);
 	}
+	static void printl(String s){
+		System.out.print(s);
+	}
 	
-	static void translate(int oc, int instruction){
+	static void DeCode(){
+		String toPrint, decoded;
+		print("\n===== Disassembled Code =====");
+		for(int i=0; i<Micro86.Memory.length; i++){
+			decoded=mean((Micro86.Memory[i]>>>16), Micro86.Memory[i]&0x0000FFFF);
+			toPrint=decoded.equalsIgnoreCase("Not Implemented Yet")?".":Integer.toHexString(i)+": "+decoded+"\n";
+			printl(toPrint);
+		}
+	}
+	
+	static void Trace(){
+		if(!activatetrace){
+			print("\n===== Execution Trace =====\n");
+			activatetrace=true;
+		}
+		if(activatetrace){
+			print(Micro86.counter+":\t"+mean((Micro86.ir>>>16), Micro86.ir&0x0000FFFF)
+							+"\tRegisters: acc: "+Micro86.acc +" ip: "+Micro86.ins +" flags: "+Micro86.flag +" (ir: "+Micro86.ir+")");
+		}
+	}
+	static String mean(int oc, int instruction){
 		String octoeng="";
 		switch(oc){
 			case 0x0100:
@@ -413,16 +450,24 @@ class Debug{
 				break;
 			//All other cases
 			default:
-				octoeng="Not Implemented Yet"+Integer.toHexString(oc);
+				octoeng="Not Implemented Yet";
 				break;
 		}
-		print(Micro86.ins+"\t"+octoeng+"\t"+Integer.toHexString(instruction));
+		return octoeng;
 	}
 	
 	static void Dump(){
-		print("Memory Dump");
+		String toPrint;
+		int counter=-1;
+		print("\n\n===== Post-Mortem Dump ("+Micro86.termination+" termination) =====");
+		print("--------------------");
+		print("Registers: acc: "+Micro86.acc+" ip: "+Micro86.ins+" flags: "+Micro86.flag+" (ir: "+Micro86.ir+")");
+		print("------------- Memory ---------------");
 		for(int i:Micro86.Memory){
-			print(Integer.toHexString(i).toUpperCase()+"");
+			counter++;
+			toPrint=(i==0)?".":Integer.toHexString(counter)+": "+Integer.toHexString(i).toUpperCase()+"\n";
+			printl(toPrint);
 		}
+		print("\n-------------End of Memory DUMP ---------------");
 	}
 }
