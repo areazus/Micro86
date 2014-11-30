@@ -27,11 +27,25 @@
   */
 
 package areaz.Micro86.emulator;
-import java.io.*;
+import java.awt.BorderLayout;
+import java.awt.Container;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.util.Scanner;
 
-public class Micro86{	
-	public static int[] Memory=new int[30];			//initial memory is 30
+import javax.swing.JComponent;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import areaz.Micro86.assembler.Micro86_Assembler;
+
+@SuppressWarnings("serial")
+public class Micro86 extends JComponent{	
+	public static int[] Memory=new int[50];			//initial memory is 30
 	public static OpCode[] op=new OpCode[0xFFFF];	//OpCode jump table
 	public static Scanner input=new Scanner(System.in);	//to read input
 	public static int acc=0x0;							//Accumulator
@@ -43,22 +57,74 @@ public class Micro86{
 	public static boolean trace, decode;				//Debugging properties
 	
 	public static void main(String[] args){
-			new Micro86(args);
-	}
+		
+		//Filechooser based on http://www.java2s.com/Code/Java/Swing-JFC/FileChooserDemo.htm
+		if(args.length==0){
+			 JFrame frame = new JFrame("File Chooser");
+			 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			 Container contentPane = frame.getContentPane();
+			 
+			 final JLabel directoryLabel = new JLabel(" ");
+			    directoryLabel.setFont(new Font("Serif", Font.BOLD | Font.ITALIC, 36));
+			    contentPane.add(directoryLabel, BorderLayout.NORTH);
+
+			    final JLabel filenameLabel = new JLabel(" ");
+			    filenameLabel.setFont(new Font("Serif", Font.BOLD | Font.ITALIC, 36));
+			    contentPane.add(filenameLabel, BorderLayout.SOUTH);
+
+			    JFileChooser fileChooser = new JFileChooser(".");
+			    fileChooser.setControlButtonsAreShown(false);
+			    contentPane.add(fileChooser, BorderLayout.CENTER);
+
+			    ActionListener actionListener = new ActionListener() {
+			      public void actionPerformed(ActionEvent actionEvent) {
+			        JFileChooser theFileChooser = (JFileChooser) actionEvent
+			            .getSource();
+			        String command = actionEvent.getActionCommand();
+			        if (command.equals(JFileChooser.APPROVE_SELECTION)) {
+			          File selectedFile = theFileChooser.getSelectedFile();
+			          String[] toCompile=new String[1];
+			          toCompile[0]=selectedFile.getParent()+"\\"+selectedFile.getName();
+			          frame.setVisible(false);
+			          if(toCompile[0].contains(".a86")){
+			        	  String[] temp=new String[3];
+			        	  temp[0]="-java";
+			        	  temp[1]="-m86";
+			        	  temp[2]=toCompile[0];
+			        	  new Micro86_Assembler(temp);
+			          }
+			          else
+			        	  new Micro86(toCompile);
+			          
+			        } 
+			      }
+			    };
+			    fileChooser.addActionListener(actionListener);
+			    frame.pack();
+			    frame.setVisible(true);
+		}else{
+			if(args[args.length-1].contains(".a86"))
+				new Micro86_Assembler(args);
+	          else
+	        	  new Micro86(args);
 	
+		
+		
+		}
+	}
 	public Micro86(String[] args){
 		Loader(args);			//Loads program into Memory
 		initializeOpCode();		//initializing opcodes
 		while(true){
 			counter++;
-			ir=Memory[ins];	//Fetching instructions		
+			ir=Memory[ins];	//Fetching instructions	
 			if(trace)
 				Debug.Trace();	//DEBUG
 			op[ir>>>16].Execute(ir&0x0000FFFF);	//Execute
 			ins+=0x00000001;					//Increment instruction register
 		}
 	}
-	
+
 	private static void initializeOpCode(){
 		//Why array? That is a way of implementing jump table
 		//Switch, at worse could be interepted as if-else-if, increasing the number of comparisons
@@ -170,7 +236,7 @@ class Add implements OpCode{
 	//OpCode Add value of memory[m] to Accumulator
 	public void Execute(int m){
 		//acc+=Memory[m]
-		Micro86.acc=Micro86.Memory[m];
+		Micro86.acc+=Micro86.Memory[m];
 	}
 }
 
@@ -396,6 +462,15 @@ class Debug{
 				break;
 			case 0x0302:
 				octoeng="Store";
+				break;
+			case 0x0402:
+				octoeng="Add";
+				break;
+			case 0x0401:
+				octoeng="AddI";
+				break;
+			case 0x0502:
+				octoeng="Sub";
 				break;
 			case 0x0501:
 				octoeng="SUBI";

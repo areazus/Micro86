@@ -1,0 +1,300 @@
+================================
+Micro86 Emulator version 1.0
+================================
+Executable file: C:\Users\ahmed\SkyDrive\Eclipse\Micro86\Compiled_Project\programfiles\test.m86
+
+02010018
+03020010
+02010001
+03020011
+02020011
+09010005
+0f01000e
+02020010
+06010002
+03020010
+02020011
+04010001
+03020011
+0a010004
+00000000
+01000000
+00000000
+00000000
+
+===== Disassembled Code =====
+0: LOADI
+1: Store
+2: LOADI
+3: Store
+4: LOAD
+5: CMPI
+6: JGI
+7: LOAD
+.9: Store
+a: LOAD
+b: AddI
+c: Store
+d: JMP1
+.f: HALT
+..................................
+===== Execution Trace =====
+
+0:	LOADI	Registers: acc: 0 ip: 0 flags: 0 (ir: 33619992)
+1:	Store	Registers: acc: 24 ip: 1 flags: 0 (ir: 50462736)
+2:	LOADI	Registers: acc: 24 ip: 2 flags: 0 (ir: 33619969)
+3:	Store	Registers: acc: 1 ip: 3 flags: 0 (ir: 50462737)
+4:	LOAD	Registers: acc: 1 ip: 4 flags: 0 (ir: 33685521)
+5:	CMPI	Registers: acc: 1 ip: 5 flags: 0 (ir: 151060485)
+6:	JGI	Registers: acc: 1 ip: 6 flags: 256 (ir: 251723790)
+7:	LOAD	Registers: acc: 1 ip: 7 flags: 256 (ir: 33685520)
+8:	Not Implemented Yet	Registers: acc: 24 ip: 8 flags: 256 (ir: 100728834)
+9:	Store	Registers: acc: 48 ip: 9 flags: 256 (ir: 50462736)
+10:	LOAD	Registers: acc: 48 ip: 10 flags: 256 (ir: 33685521)
+11:	AddI	Registers: acc: 1 ip: 11 flags: 256 (ir: 67174401)
+12:	Store	Registers: acc: 2 ip: 12 flags: 256 (ir: 50462737)
+13:	JMP1	Registers: acc: 2 ip: 13 flags: 256 (ir: 167837700)
+14:	LOAD	Registers: acc: 2 ip: 4 flags: 256 (ir: 33685521)
+15:	CMPI	Registers: acc: 2 ip: 5 flags: 256 (ir: 151060485)
+16:	JGI	Registers: acc: 2 ip: 6 flags: 256 (ir: 251723790)
+17:	LOAD	Registers: acc: 2 ip: 7 flags: 256 (ir: 33685520)
+18:	Not Implemented Yet	Registers: acc: 48 ip: 8 flags: 256 (ir: 100728834)
+19:	Store	Registers: acc: 96 ip: 9 flags: 256 (ir: 50462736)
+20:	LOAD	Registers: acc: 96 ip: 10 flags: 256 (ir: 33685521)
+21:	AddI	Registers: acc: 2 ip: 11 flags: 256 (ir: 67174401)
+22:	Store	Registers: acc: 3 ip: 12 flags: 256 (ir: 50462737)
+23:	JMP1	Registers: acc: 3 ip: 13 flags: 256 (ir: 167837700)
+24:	LOAD	Registers: acc: 3 ip: 4 flags: 256 (ir: 33685521)
+25:	CMPI	Registers: acc: 3 ip: 5 flags: 256 (ir: 151060485)
+26:	JGI	Registers: acc: 3 ip: 6 flags: 256 (ir: 251723790)
+27:	LOAD	Registers: acc: 3 ip: 7 flags: 256 (ir: 33685520)
+28:	Not Implemented Yet	Registers: acc: 96 ip: 8 flags: 256 (ir: 100728834)
+29:	Store	Registers: acc: 192 ip: 9 flags: 256 (ir: 50462736)
+30:	LOAD	Registers: acc: 192 ip: 10 flags: 256 (ir: 33685521)
+31:	AddI	Registers: acc: 3 ip: 11 flags: 256 (ir: 67174401)
+32:	Store	Registers: acc: 4 ip: 12 flags: 256 (ir: 50462737)
+33:	JMP1	Registers: acc: 4 ip: 13 flags: 256 (ir: 167837700)
+34:	LOAD	Registers: acc: 4 ip: 4 flags: 256 (ir: 33685521)
+35:	CMPI	Registers: acc: 4 ip: 5 flags: 256 (ir: 151060485)
+36:	JGI	Registers: acc: 4 ip: 6 flags: 256 (ir: 251723790)
+37:	LOAD	Registers: acc: 4 ip: 7 flags: 256 (ir: 33685520)
+38:	Not Implemented Yet	Registers: acc: 192 ip: 8 flags: 256 (ir: 100728834)
+39:	Store	Registers: acc: 384 ip: 9 flags: 256 (ir: 50462736)
+40:	LOAD	Registers: acc: 384 ip: 10 flags: 256 (ir: 33685521)
+41:	AddI	Registers: acc: 4 ip: 11 flags: 256 (ir: 67174401)
+42:	Store	Registers: acc: 5 ip: 12 flags: 256 (ir: 50462737)
+43:	JMP1	Registers: acc: 5 ip: 13 flags: 256 (ir: 167837700)
+44:	LOAD	Registers: acc: 5 ip: 4 flags: 256 (ir: 33685521)
+45:	CMPI	Registers: acc: 5 ip: 5 flags: 256 (ir: 151060485)
+46:	JGI	Registers: acc: 5 ip: 6 flags: 1 (ir: 251723790)
+47:	LOAD	Registers: acc: 5 ip: 7 flags: 1 (ir: 33685520)
+48:	Not Implemented Yet	Registers: acc: 384 ip: 8 flags: 1 (ir: 100728834)
+49:	Store	Registers: acc: 768 ip: 9 flags: 1 (ir: 50462736)
+50:	LOAD	Registers: acc: 768 ip: 10 flags: 1 (ir: 33685521)
+51:	AddI	Registers: acc: 5 ip: 11 flags: 1 (ir: 67174401)
+52:	Store	Registers: acc: 6 ip: 12 flags: 1 (ir: 50462737)
+53:	JMP1	Registers: acc: 6 ip: 13 flags: 1 (ir: 167837700)
+54:	LOAD	Registers: acc: 6 ip: 4 flags: 1 (ir: 33685521)
+55:	CMPI	Registers: acc: 6 ip: 5 flags: 1 (ir: 151060485)
+56:	JGI	Registers: acc: 6 ip: 6 flags: 16 (ir: 251723790)
+57:	Not Implemented Yet	Registers: acc: 6 ip: 14 flags: 16 (ir: 0)
+================================
+Micro86 Emulator version 1.0
+================================
+Executable file: C:\Users\ahmed\SkyDrive\Eclipse\Micro86\Compiled_Project\programfiles\test.m86
+
+02010018
+03020010
+02010001
+03020011
+02020011
+09010005
+0f01000e
+02020010
+06010002
+03020010
+02020011
+04010001
+03020011
+0a010004
+00000000
+01000000
+00000000
+00000000
+
+===== Disassembled Code =====
+0: LOADI
+1: Store
+2: LOADI
+3: Store
+4: LOAD
+5: CMPI
+6: JGI
+7: LOAD
+.9: Store
+a: LOAD
+b: AddI
+c: Store
+d: JMP1
+.f: HALT
+..................................
+===== Execution Trace =====
+
+0:	LOADI	Registers: acc: 0 ip: 0 flags: 0 (ir: 33619992)
+1:	Store	Registers: acc: 24 ip: 1 flags: 0 (ir: 50462736)
+2:	LOADI	Registers: acc: 24 ip: 2 flags: 0 (ir: 33619969)
+3:	Store	Registers: acc: 1 ip: 3 flags: 0 (ir: 50462737)
+4:	LOAD	Registers: acc: 1 ip: 4 flags: 0 (ir: 33685521)
+5:	CMPI	Registers: acc: 1 ip: 5 flags: 0 (ir: 151060485)
+6:	JGI	Registers: acc: 1 ip: 6 flags: 256 (ir: 251723790)
+7:	LOAD	Registers: acc: 1 ip: 7 flags: 256 (ir: 33685520)
+8:	Not Implemented Yet	Registers: acc: 24 ip: 8 flags: 256 (ir: 100728834)
+9:	Store	Registers: acc: 48 ip: 9 flags: 256 (ir: 50462736)
+10:	LOAD	Registers: acc: 48 ip: 10 flags: 256 (ir: 33685521)
+11:	AddI	Registers: acc: 1 ip: 11 flags: 256 (ir: 67174401)
+12:	Store	Registers: acc: 2 ip: 12 flags: 256 (ir: 50462737)
+13:	JMP1	Registers: acc: 2 ip: 13 flags: 256 (ir: 167837700)
+14:	LOAD	Registers: acc: 2 ip: 4 flags: 256 (ir: 33685521)
+15:	CMPI	Registers: acc: 2 ip: 5 flags: 256 (ir: 151060485)
+16:	JGI	Registers: acc: 2 ip: 6 flags: 256 (ir: 251723790)
+17:	LOAD	Registers: acc: 2 ip: 7 flags: 256 (ir: 33685520)
+18:	Not Implemented Yet	Registers: acc: 48 ip: 8 flags: 256 (ir: 100728834)
+19:	Store	Registers: acc: 96 ip: 9 flags: 256 (ir: 50462736)
+20:	LOAD	Registers: acc: 96 ip: 10 flags: 256 (ir: 33685521)
+21:	AddI	Registers: acc: 2 ip: 11 flags: 256 (ir: 67174401)
+22:	Store	Registers: acc: 3 ip: 12 flags: 256 (ir: 50462737)
+23:	JMP1	Registers: acc: 3 ip: 13 flags: 256 (ir: 167837700)
+24:	LOAD	Registers: acc: 3 ip: 4 flags: 256 (ir: 33685521)
+25:	CMPI	Registers: acc: 3 ip: 5 flags: 256 (ir: 151060485)
+26:	JGI	Registers: acc: 3 ip: 6 flags: 256 (ir: 251723790)
+27:	LOAD	Registers: acc: 3 ip: 7 flags: 256 (ir: 33685520)
+28:	Not Implemented Yet	Registers: acc: 96 ip: 8 flags: 256 (ir: 100728834)
+29:	Store	Registers: acc: 192 ip: 9 flags: 256 (ir: 50462736)
+30:	LOAD	Registers: acc: 192 ip: 10 flags: 256 (ir: 33685521)
+31:	AddI	Registers: acc: 3 ip: 11 flags: 256 (ir: 67174401)
+32:	Store	Registers: acc: 4 ip: 12 flags: 256 (ir: 50462737)
+33:	JMP1	Registers: acc: 4 ip: 13 flags: 256 (ir: 167837700)
+34:	LOAD	Registers: acc: 4 ip: 4 flags: 256 (ir: 33685521)
+35:	CMPI	Registers: acc: 4 ip: 5 flags: 256 (ir: 151060485)
+36:	JGI	Registers: acc: 4 ip: 6 flags: 256 (ir: 251723790)
+37:	LOAD	Registers: acc: 4 ip: 7 flags: 256 (ir: 33685520)
+38:	Not Implemented Yet	Registers: acc: 192 ip: 8 flags: 256 (ir: 100728834)
+39:	Store	Registers: acc: 384 ip: 9 flags: 256 (ir: 50462736)
+40:	LOAD	Registers: acc: 384 ip: 10 flags: 256 (ir: 33685521)
+41:	AddI	Registers: acc: 4 ip: 11 flags: 256 (ir: 67174401)
+42:	Store	Registers: acc: 5 ip: 12 flags: 256 (ir: 50462737)
+43:	JMP1	Registers: acc: 5 ip: 13 flags: 256 (ir: 167837700)
+44:	LOAD	Registers: acc: 5 ip: 4 flags: 256 (ir: 33685521)
+45:	CMPI	Registers: acc: 5 ip: 5 flags: 256 (ir: 151060485)
+46:	JGI	Registers: acc: 5 ip: 6 flags: 1 (ir: 251723790)
+47:	LOAD	Registers: acc: 5 ip: 7 flags: 1 (ir: 33685520)
+48:	Not Implemented Yet	Registers: acc: 384 ip: 8 flags: 1 (ir: 100728834)
+49:	Store	Registers: acc: 768 ip: 9 flags: 1 (ir: 50462736)
+50:	LOAD	Registers: acc: 768 ip: 10 flags: 1 (ir: 33685521)
+51:	AddI	Registers: acc: 5 ip: 11 flags: 1 (ir: 67174401)
+52:	Store	Registers: acc: 6 ip: 12 flags: 1 (ir: 50462737)
+53:	JMP1	Registers: acc: 6 ip: 13 flags: 1 (ir: 167837700)
+54:	LOAD	Registers: acc: 6 ip: 4 flags: 1 (ir: 33685521)
+55:	CMPI	Registers: acc: 6 ip: 5 flags: 1 (ir: 151060485)
+56:	JGI	Registers: acc: 6 ip: 6 flags: 16 (ir: 251723790)
+57:	Not Implemented Yet	Registers: acc: 6 ip: 14 flags: 16 (ir: 0)
+================================
+Micro86 Emulator version 1.0
+================================
+Executable file: test.m86
+
+02010018
+03020010
+02010001
+03020011
+02020011
+09010005
+0f01000e
+02020010
+06010002
+03020010
+02020011
+04010001
+03020011
+0a010004
+00000000
+01000000
+00000000
+00000000
+
+===== Disassembled Code =====
+0: LOADI
+1: Store
+2: LOADI
+3: Store
+4: LOAD
+5: CMPI
+6: JGI
+7: LOAD
+.9: Store
+a: LOAD
+b: AddI
+c: Store
+d: JMP1
+.f: HALT
+..................................
+===== Execution Trace =====
+
+0:	LOADI	Registers: acc: 0 ip: 0 flags: 0 (ir: 33619992)
+1:	Store	Registers: acc: 24 ip: 1 flags: 0 (ir: 50462736)
+2:	LOADI	Registers: acc: 24 ip: 2 flags: 0 (ir: 33619969)
+3:	Store	Registers: acc: 1 ip: 3 flags: 0 (ir: 50462737)
+4:	LOAD	Registers: acc: 1 ip: 4 flags: 0 (ir: 33685521)
+5:	CMPI	Registers: acc: 1 ip: 5 flags: 0 (ir: 151060485)
+6:	JGI	Registers: acc: 1 ip: 6 flags: 256 (ir: 251723790)
+7:	LOAD	Registers: acc: 1 ip: 7 flags: 256 (ir: 33685520)
+8:	Not Implemented Yet	Registers: acc: 24 ip: 8 flags: 256 (ir: 100728834)
+9:	Store	Registers: acc: 48 ip: 9 flags: 256 (ir: 50462736)
+10:	LOAD	Registers: acc: 48 ip: 10 flags: 256 (ir: 33685521)
+11:	AddI	Registers: acc: 1 ip: 11 flags: 256 (ir: 67174401)
+12:	Store	Registers: acc: 2 ip: 12 flags: 256 (ir: 50462737)
+13:	JMP1	Registers: acc: 2 ip: 13 flags: 256 (ir: 167837700)
+14:	LOAD	Registers: acc: 2 ip: 4 flags: 256 (ir: 33685521)
+15:	CMPI	Registers: acc: 2 ip: 5 flags: 256 (ir: 151060485)
+16:	JGI	Registers: acc: 2 ip: 6 flags: 256 (ir: 251723790)
+17:	LOAD	Registers: acc: 2 ip: 7 flags: 256 (ir: 33685520)
+18:	Not Implemented Yet	Registers: acc: 48 ip: 8 flags: 256 (ir: 100728834)
+19:	Store	Registers: acc: 96 ip: 9 flags: 256 (ir: 50462736)
+20:	LOAD	Registers: acc: 96 ip: 10 flags: 256 (ir: 33685521)
+21:	AddI	Registers: acc: 2 ip: 11 flags: 256 (ir: 67174401)
+22:	Store	Registers: acc: 3 ip: 12 flags: 256 (ir: 50462737)
+23:	JMP1	Registers: acc: 3 ip: 13 flags: 256 (ir: 167837700)
+24:	LOAD	Registers: acc: 3 ip: 4 flags: 256 (ir: 33685521)
+25:	CMPI	Registers: acc: 3 ip: 5 flags: 256 (ir: 151060485)
+26:	JGI	Registers: acc: 3 ip: 6 flags: 256 (ir: 251723790)
+27:	LOAD	Registers: acc: 3 ip: 7 flags: 256 (ir: 33685520)
+28:	Not Implemented Yet	Registers: acc: 96 ip: 8 flags: 256 (ir: 100728834)
+29:	Store	Registers: acc: 192 ip: 9 flags: 256 (ir: 50462736)
+30:	LOAD	Registers: acc: 192 ip: 10 flags: 256 (ir: 33685521)
+31:	AddI	Registers: acc: 3 ip: 11 flags: 256 (ir: 67174401)
+32:	Store	Registers: acc: 4 ip: 12 flags: 256 (ir: 50462737)
+33:	JMP1	Registers: acc: 4 ip: 13 flags: 256 (ir: 167837700)
+34:	LOAD	Registers: acc: 4 ip: 4 flags: 256 (ir: 33685521)
+35:	CMPI	Registers: acc: 4 ip: 5 flags: 256 (ir: 151060485)
+36:	JGI	Registers: acc: 4 ip: 6 flags: 256 (ir: 251723790)
+37:	LOAD	Registers: acc: 4 ip: 7 flags: 256 (ir: 33685520)
+38:	Not Implemented Yet	Registers: acc: 192 ip: 8 flags: 256 (ir: 100728834)
+39:	Store	Registers: acc: 384 ip: 9 flags: 256 (ir: 50462736)
+40:	LOAD	Registers: acc: 384 ip: 10 flags: 256 (ir: 33685521)
+41:	AddI	Registers: acc: 4 ip: 11 flags: 256 (ir: 67174401)
+42:	Store	Registers: acc: 5 ip: 12 flags: 256 (ir: 50462737)
+43:	JMP1	Registers: acc: 5 ip: 13 flags: 256 (ir: 167837700)
+44:	LOAD	Registers: acc: 5 ip: 4 flags: 256 (ir: 33685521)
+45:	CMPI	Registers: acc: 5 ip: 5 flags: 256 (ir: 151060485)
+46:	JGI	Registers: acc: 5 ip: 6 flags: 1 (ir: 251723790)
+47:	LOAD	Registers: acc: 5 ip: 7 flags: 1 (ir: 33685520)
+48:	Not Implemented Yet	Registers: acc: 384 ip: 8 flags: 1 (ir: 100728834)
+49:	Store	Registers: acc: 768 ip: 9 flags: 1 (ir: 50462736)
+50:	LOAD	Registers: acc: 768 ip: 10 flags: 1 (ir: 33685521)
+51:	AddI	Registers: acc: 5 ip: 11 flags: 1 (ir: 67174401)
+52:	Store	Registers: acc: 6 ip: 12 flags: 1 (ir: 50462737)
+53:	JMP1	Registers: acc: 6 ip: 13 flags: 1 (ir: 167837700)
+54:	LOAD	Registers: acc: 6 ip: 4 flags: 1 (ir: 33685521)
+55:	CMPI	Registers: acc: 6 ip: 5 flags: 1 (ir: 151060485)
+56:	JGI	Registers: acc: 6 ip: 6 flags: 16 (ir: 251723790)
+57:	Not Implemented Yet	Registers: acc: 6 ip: 14 flags: 16 (ir: 0)

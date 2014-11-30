@@ -1,0 +1,11 @@
+-----------------------------
+Lexical Elements of MicroPL86
+-----------------------------
+
+ID 		[a-zA-z][a-zA-Z0-9]+
+INT		[0-9]+	
+Keywords	program int if while for print read end 
+RELOP 	== | != | < | <= | > | >=
+ADDOP	+ | -
+MULOP	* | / | %
+PUNCT	; | , | { | } | ( | )
