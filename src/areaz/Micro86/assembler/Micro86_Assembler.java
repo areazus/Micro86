@@ -1,6 +1,10 @@
-/* 
+/* Author: Ahmed Reaz
+ * Assignment: 03-M86Asm-1.0
+ * For: CISC 3160 FALL 2014
+ * Achievement: The program turns simple assembly language code to java and Micro86 machine code
  * 
- * 
+ * NOTICE AND DISCLAIMER: Please give credits if you are copying any portion of this software. I am NOT responsible
+ * if this software turns your computer into Transformer or anything else, its not intended to do. 
  */
 
 package areaz.Micro86.assembler;
@@ -28,6 +32,7 @@ public class Micro86_Assembler {
 	private boolean m86_machine_code;					//to check if to translate to machines language
 	private boolean Debug;
 	private Vector<String> javacode;					//will hold the translated java code
+	private String filename;
 	
 	public static void main(String[] args){
 		new Micro86_Assembler(args);					//initialize the object
@@ -45,16 +50,17 @@ public class Micro86_Assembler {
 					Debug=true;
 			}	
 		}else{
-			args=new String[1];
-			java=true;
-			m86_machine_code=true;
-			args[0]="C:\\Users\\ahmed\\SkyDrive\\Eclipse\\Micro86\\assets\\04_avg.a86";
+			System.out.println("Please send arguments to Assenbler");
 		}
-		
-		Loader(args[args.length-1]);		//Loads the file to file Vector
+		try{
+		filename=args[args.length-1];
+		Loader();		//Loads the file to file Vector
 		Parser();							//Parse the file to be translated into assigned language
+		}catch(ArrayIndexOutOfBoundsException e){
+			System.out.println("Exception 0x0001: Memory not initialized or not enough memory");
+			//Exception 0x0001: Possible causes>> invalid file name(Should throw exception in loader), no file name, no argument
+		}
 	}
-	
 	private void init_HashMap() {
 		//Initialize and add String and keys to Ins_to_Opcode 
 		Ins_to_Opcode=new HashMap<String, Integer>();
@@ -90,7 +96,7 @@ public class Micro86_Assembler {
 		}
 	}
 
-	private void Loader(String filename){
+	private void Loader(){
 		//Reads file and store it in file Vector
 		String temp;
 		file=new Vector<String>(6, 2);
@@ -116,6 +122,8 @@ public class Micro86_Assembler {
 		int counter=-1;			//Keeps hold of line number
 		
 		boolean haslabel=false;
+		
+		Validate_file_start();	//This method is important for creation of java file//Will add one extra instruction for CPU
 		
 		for(String temp:file){
 			if(temp.trim().length()>0&&!temp.startsWith(";"))
@@ -171,10 +179,19 @@ public class Micro86_Assembler {
 		Make();
 	}
 	
+	private void Validate_file_start() {
+		// TODO Auto-generated method stub
+		if(file.get(0).startsWith(":")){
+			file.add(0, "LOADI 0");
+		}
+			
+	}
+
 	private void Initialize_java_code() {
 		javacode=new Vector<String>(20, 2);
+		javacode.addElement("//Filename must be changed to Output.java to compile and run");
 		javacode.addElement("import java.util.*;");
-		javacode.addElement("public class output{");
+		javacode.addElement("public class Output{");
 		javacode.addElement("\tprivate static int acc;");
 		javacode.addElement("\tprivate static int comp;");
 		javacode.addElement("\tprivate static Scanner input=new Scanner(System.in);");
@@ -189,7 +206,7 @@ public class Micro86_Assembler {
 		int instruction_counter=0;
 		String oc, op;
 		
-		javacode.addElement("\tpublic output(){");
+		javacode.addElement("\tpublic Output(){");
 		String nextLabel=null;
 		try{
 			nextLabel=Label.get(0);
@@ -239,7 +256,7 @@ public class Micro86_Assembler {
 				}
 				javacode.addElement("\t\tif(acc>comp)\n\t\t\t"+op+"();\n\t\telse{");
 				Is_if=true;
-			}else if(oc.equalsIgnoreCase("JGI")){
+			}else if(oc.equalsIgnoreCase("JGEI")){
 				if(Is_if){
 					javacode.addElement("\t\t}");
 					Is_if=false;
@@ -311,7 +328,7 @@ public class Micro86_Assembler {
 			javacode.addElement("\t\t}");
 			Is_if=false;
 		}
-		javacode.addElement("\t}\n\tpublic static void main(String[] args){new output();}\n}");
+		javacode.addElement("\t}\n\tpublic static void main(String[] args){new Output();}\n}");
 		
 		
 		for(String temp:javacode)
@@ -414,5 +431,7 @@ public class Micro86_Assembler {
 			output[i]=output[i].toUpperCase();
 		}
 	}
+	
+	
 
 }

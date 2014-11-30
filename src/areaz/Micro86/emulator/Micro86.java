@@ -58,8 +58,6 @@ public class Micro86 extends JComponent{
 	
 	public static void main(String[] args){
 		
-		//args=new String[1];
-		//args[0]="C:\\Users\\ahmed\\SkyDrive\\Eclipse\\Micro86\\Compiled_Project\\programfiles\\test.m86";
 		//Filechooser based on http://www.java2s.com/Code/Java/Swing-JFC/FileChooserDemo.htm
 		if(args.length==0){
 			 JFrame frame = new JFrame("File Chooser");
