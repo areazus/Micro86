@@ -2,8 +2,8 @@ package areaz.Micro86.HL.lexical;
 
 import java.io.*;
 
-class Lexer {
-	Lexer(File file) throws IOException {
+public class Lexer {
+	public Lexer(File file) throws IOException {
 		is = new FileInputStream(file);
 		advance();
 		next();
@@ -12,7 +12,6 @@ class Lexer {
 	@SuppressWarnings("deprecation")
 	Lexer(String s) throws IOException {
 		is = new StringBufferInputStream(s);
-		
 		advance(); 
 	}
 
@@ -162,7 +161,8 @@ class Lexer {
 	InputStream is;
 	char currChar;
 	Token currentToken = null;
-	int line = 1, col = 1;
+	public int line = 1;
+	public int col = 1;
 
 	static final int 
 		EOI = -2,

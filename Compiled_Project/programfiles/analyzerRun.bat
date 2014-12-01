@@ -1,0 +1,1 @@
+java -jar ../runnable/Micro86ParserWithAnalysis.jar %1 >> %1.analyzer.output

@@ -1,0 +1,1 @@
+java -jar ../runnable/Micro86Parser.jar %1 >> %1.parser.output

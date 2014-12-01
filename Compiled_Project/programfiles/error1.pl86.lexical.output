@@ -1,0 +1,105 @@
+error1.pl86
+int
+ID (n)
+COMMA
+ID (candidate)
+SEMICOLON
+int
+ID (i)
+SEMICOLON
+int
+ID (true)
+COMMA
+ID (false)
+SEMICOLON
+int
+ID (isPrime)
+COMMA
+ID (done)
+SEMICOLON
+ID (true)
+ASSIGN_SYMBOL
+INT_LITERAL (1)
+SEMICOLON
+ID (false)
+ASSIGN_SYMBOL
+INT_LITERAL (0)
+SEMICOLON
+read
+ID (n)
+SEMICOLON
+for
+ID (candidate)
+ASSIGN_SYMBOL
+INT_LITERAL (2)
+COMMA
+ID (n)
+LBRACE
+ID (isPrime)
+ASSIGN_SYMBOL
+INT_LITERAL (1)
+SEMICOLON
+ID (done)
+ASSIGN_SYMBOL
+INT_LITERAL (0)
+SEMICOLON
+while
+LPAREN
+ID (done)
+Equal To
+ID (false)
+RPAREN
+if
+LPAREN
+ID (n)
+MOD_OP
+ID (i)
+Equal To
+INT_LITERAL (0)
+RPAREN
+LBRACE
+ID (done)
+ASSIGN_SYMBOL
+ID (true)
+SEMICOLON
+ID (isPrime)
+ASSIGN_SYMBOL
+ID (false)
+SEMICOLON
+RBRACE
+else
+LBRACE
+ID (i)
+ASSIGN_SYMBOL
+ID (i)
+PLUS_OP
+INT_LITERAL (1)
+SEMICOLON
+if
+LPAREN
+ID (i)
+Greater than
+ID (n)
+DIV_OP
+INT_LITERAL (2)
+RPAREN
+ID (done)
+ASSIGN_SYMBOL
+ID (false)
+SEMICOLON
+ID (isPrime)
+ASSIGN_SYMBOL
+ID (true)
+SEMICOLON
+RBRACE
+if
+LPAREN
+ID (isPrime)
+Equal To
+ID (true)
+RPAREN
+Print
+ID (candidate)
+SEMICOLON
+RBRACE
+end

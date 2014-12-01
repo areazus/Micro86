@@ -1,0 +1,9 @@
+# Prints the prime numbers up to an including the integer read in from the keyboard
+
+program
+	int n;
+
+	n = 12;
+	x = n + 1;
+end
+				

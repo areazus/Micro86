@@ -3,20 +3,20 @@ package areaz.Micro86.HL.lexical;
 import java.util.Map;
 import java.util.TreeMap;
 
-class Token {
-	Token(int type, String lexeme) {
+public class Token {
+	public Token(int type, String lexeme) {
 		this.type = type;
 		this.lexeme = lexeme;
 	}
 
-	Token(int type) {this(type, null);}
+	public Token(int type) {this(type, null);}
 
 	public String toString() {return tokMap.get(type) + (lexeme == null ? "" : " (" + lexeme + ")");}
 
-	int type;
-	String lexeme;
+	public int type;
+	public String lexeme;
 
-	static final int 
+	public static final int 
 		EOI = 0,
 		ID = 1,
 		INT_LITERAL = 2,
@@ -50,7 +50,7 @@ class Token {
 		
 
 
-	static final Map<Integer, String> tokMap = new TreeMap<Integer, String>();
+	public static final Map<Integer, String> tokMap = new TreeMap<Integer, String>();
 
 	static {
 		tokMap.put(EOI, "EOI");
@@ -98,6 +98,12 @@ class Token {
 		keywordMap.put("print", new Token(Print));
 		keywordMap.put("read", new Token(read));
 		keywordMap.put("end", new Token(END));
+	}
+
+	public boolean isRelop() {
+		if(type==13||type==14||(type>=26&&type<=29))
+			return true;
+		return false;
 	}
 }
 		
